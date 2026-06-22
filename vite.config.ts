@@ -12,4 +12,15 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      proxy: {
+        "/__l5e": {
+          target: "https://pixel-storybook-71.lovable.app",
+          changeOrigin: true,
+          secure: true,
+        },
+      },
+    },
+  },
 });

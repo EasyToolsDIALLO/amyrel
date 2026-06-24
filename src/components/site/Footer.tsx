@@ -1,5 +1,5 @@
 import { Truck, ShieldCheck, RotateCcw, Headphones, Instagram, Facebook, Music2, Linkedin } from "lucide-react";
-import logoAmyrel from "@/assets/logo-amyrel-transparent.png.asset.json";
+import logoAmyrel from "@/assets/logo_amyrel_trans.png";
 
 export function Footer() {
   return (
@@ -22,7 +22,7 @@ export function Footer() {
       </div>
       <div className="mx-auto max-w-7xl px-6 py-14 grid grid-cols-2 md:grid-cols-5 gap-10">
         <div className="col-span-2 md:col-span-1">
-          <img src={logoAmyrel.url} alt="Amyrel Cosmétique" className="h-14 w-auto" />
+          <img src={logoAmyrel} alt="Amyrel Cosmétique" className="h-14 w-auto" />
           <p className="mt-6 text-sm text-muted-foreground max-w-xs">
             Les trésors végétaux africains au service de votre peau.
           </p>

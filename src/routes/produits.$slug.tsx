@@ -54,7 +54,7 @@ function ProductPage() {
   return (
     <div className="amyrel-shell min-h-screen flex flex-col bg-background text-foreground">
       <Header />
-      <main>
+      <main className="pb-16 lg:pb-0">
         <nav className="mx-auto max-w-7xl px-6 pt-8 text-xs text-muted-foreground flex items-center gap-2">
           <Link to="/" className="hover:text-primary">Accueil</Link>
           <ChevronRight className="h-3 w-3" />
@@ -63,10 +63,10 @@ function ProductPage() {
           <span className="text-foreground">{product.name}</span>
         </nav>
 
-        <section className="relative mx-auto max-w-7xl px-6 py-10 grid md:grid-cols-2 gap-12">
+        <section className="relative mx-auto max-w-7xl px-4 md:px-6 py-6 md:py-10 grid md:grid-cols-2 gap-6 md:gap-12">
           <Botanical name="olive" className="absolute -top-4 right-0 w-[160px] hidden md:block" opacity={0.16} rotate={12} />
           <Botanical name="hibiscus" className="absolute -bottom-8 -left-6 w-[180px] hidden md:block" opacity={0.13} rotate={-10} />
-          <div className="grid grid-cols-[80px_1fr] gap-4">
+          <div className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-3 md:gap-4">
             <div className="flex flex-col gap-3">
               {[product.bottle, product.ingredient, product.bottle, product.ingredient].map((src, i) => (
                 <button key={i} className="aspect-square overflow-hidden border border-border product-shot-bg-soft">
@@ -75,13 +75,13 @@ function ProductPage() {
               ))}
             </div>
             <div className="aspect-[4/5] overflow-hidden product-shot-bg relative">
-              <img src={product.bottle} alt={product.name} className="w-full h-full object-contain p-10 drop-shadow-2xl" />
+              <img src={product.bottle} alt={product.name} className="w-full h-full object-contain p-4 md:p-10 drop-shadow-2xl" />
             </div>
           </div>
 
           <div className="md:py-6">
             <div className="text-[11px] tracking-[0.32em] uppercase text-accent">{product.tagline}</div>
-            <h1 className="font-display text-5xl text-primary mt-3">{product.name}</h1>
+            <h1 className="font-display text-4xl md:text-5xl text-primary mt-3">{product.name}</h1>
             <div className="flex items-center gap-2 mt-3">
               {[0,1,2,3,4].map(i => <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />)}
               <span className="text-xs text-muted-foreground ml-2">142 avis vérifiés</span>
@@ -108,12 +108,12 @@ function ProductPage() {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <div className="mt-6 flex flex-col gap-3">
               <button className="flex-1 bg-primary text-primary-foreground px-7 py-4 text-xs tracking-[0.24em] uppercase hover:bg-primary/90">Ajouter au panier</button>
               <button className="flex-1 border border-primary text-primary px-7 py-4 text-xs tracking-[0.24em] uppercase hover:bg-primary hover:text-primary-foreground transition">Acheter maintenant</button>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-4 pt-6 border-t border-border">
+            <div className="mt-6 grid grid-cols-3 gap-2 pt-4 border-t border-border">
               {[{Icon: Truck, t: "Livraison offerte dès 60€"},{Icon: ShieldCheck, t: "Paiement sécurisé"},{Icon: Leaf, t: "Formule clean & vegan"}].map(({Icon,t}) => (
                 <div key={t} className="flex flex-col items-center text-center gap-2">
                   <Icon className="h-5 w-5 text-primary" strokeWidth={1.4} />

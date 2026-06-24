@@ -91,7 +91,7 @@ function Diagnostic() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
-      <main className="flex-1 py-16">
+      <main className="flex-1 py-16 pb-20 lg:pb-16">
         <div className="mx-auto max-w-3xl px-6">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.32em] uppercase text-accent">

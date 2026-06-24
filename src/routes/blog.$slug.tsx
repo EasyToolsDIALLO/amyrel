@@ -40,7 +40,7 @@ function ArticlePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 pb-16 lg:pb-0">
         <nav className="mx-auto max-w-4xl px-6 pt-8 text-xs text-muted-foreground flex items-center gap-2">
           <Link to="/" className="hover:text-primary">Accueil</Link>
           <ChevronRight className="h-3 w-3" />

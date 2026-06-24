@@ -18,7 +18,7 @@ function BlogIndex() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 pb-16 lg:pb-0">
         <section className="mx-auto max-w-7xl px-6 pt-16 pb-10 text-center">
           <Reveal>
             <div className="text-[11px] tracking-[0.32em] uppercase text-accent">Le Journal</div>
@@ -28,7 +28,7 @@ function BlogIndex() {
             </p>
           </Reveal>
         </section>
-        <section className="mx-auto max-w-7xl px-6 pb-24 grid md:grid-cols-3 gap-6">
+        <section className="mx-auto max-w-7xl px-4 md:px-6 pb-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {articles.map((a, i) => (
             <Reveal key={a.slug} delay={i * 80}>
               <Link to="/blog/$slug" params={{ slug: a.slug }} className="group block bg-card">

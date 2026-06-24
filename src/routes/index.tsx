@@ -36,17 +36,17 @@ export const Route = createFileRoute("/")({
 
 function Landing() {
   return (
-    <div className="amyrel-shell min-h-screen flex flex-col bg-background text-foreground">
+    <div className="amyrel-shell min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
       <Header />
-      <main>
+      <main className="pb-16 lg:pb-0">
         <Hero />
-        <Assurances />
         <BestSellers />
+        <IngredientsRail />
         <DiagnosticBanner />
+        <Assurances />
         <Stats />
         <Story />
         <Testimonials />
-        <IngredientsRail />
       </main>
       <Footer />
     </div>
@@ -55,9 +55,9 @@ function Landing() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-[620px] flex flex-col justify-center">
-      <Botanical name="hibiscus" className="absolute -top-10 -right-16 w-[380px] z-[2] botanical-float" opacity={0.16} rotate={-12} />
-      <Botanical name="olive" className="absolute bottom-8 left-4 w-[220px] z-[2]" opacity={0.18} rotate={8} />
+    <section className="relative overflow-hidden min-h-[520px] md:min-h-[620px] flex flex-col justify-center">
+      <Botanical name="hibiscus" className="absolute -top-10 -right-16 w-[260px] md:w-[380px] z-[2] botanical-float" opacity={0.16} rotate={-12} />
+      <Botanical name="olive" className="absolute bottom-8 left-4 w-[160px] md:w-[220px] z-[2]" opacity={0.18} rotate={8} />
       <video
         autoPlay
         muted
@@ -66,10 +66,10 @@ function Hero() {
         className="absolute inset-0 w-full h-full object-cover z-0"
         src={heroVideo.url}
       />
-      <div className="relative max-w-7xl pl-6 pr-6 pt-24 pb-24 min-h-[620px] flex flex-col justify-center z-[3]">
+      <div className="relative max-w-7xl pl-6 pr-6 pt-16 pb-16 md:pt-24 md:pb-24 min-h-[520px] md:min-h-[620px] flex flex-col justify-center z-[3]">
         <div className="max-w-xl animate-[fade-in_0.8s_ease-out]">
           <div className="text-[11px] tracking-[0.32em] uppercase text-accent mb-6 font-semibold">Made in Sénégal</div>
-          <h1 className="font-display text-5xl md:text-6xl leading-[1.05] text-primary">La nature, la science, l'essence Amyrel.</h1>
+          <h1 className="font-display text-4xl md:text-6xl leading-[1.05] text-primary">La nature, la science, l'essence Amyrel.</h1>
           <p className="mt-6 text-base text-foreground/80 max-w-md leading-relaxed">Des soins clean, ciblés et élégants formulés à partir de matières premières rares et exclusivement locales.</p>
           <div className="mt-9 flex flex-wrap gap-3">
             <a
@@ -154,9 +154,9 @@ function BestSellers() {
     { label: "Gelées", img: gammeGelee.url, to: "/produits", search: { cat: "Visage" as const } },
   ];
   return (
-    <section id="collection" className="relative overflow-hidden">
+    <section id="collection" className="relative overflow-hidden w-full">
       <Botanical name="pomegranate" className="absolute -top-6 right-0 w-[220px] z-[1]" opacity={0.1} rotate={14} />
-      <div className="mx-auto max-w-[1400px] grid md:grid-cols-2 gap-0 items-stretch">
+      <div className="mx-auto max-w-[1400px] grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
         <div className="px-6 md:px-12 py-16">
           <div className="text-[11px] tracking-[0.32em] uppercase text-accent mb-4 font-semibold">NOS BEST SELLERS</div>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-[1.05]">
@@ -207,8 +207,8 @@ function BestSellers() {
 function DiagnosticBanner() {
   return (
     <section className="relative bg-primary text-primary-foreground py-16 overflow-hidden">
-      <Botanical name="hibiscus" tint="light" className="absolute -right-10 -top-10 w-[300px]" opacity={0.25} rotate={18} />
-      <Botanical name="loofah" tint="light" className="absolute -left-10 bottom-0 w-[220px]" opacity={0.2} rotate={-12} />
+      <Botanical name="hibiscus" tint="light" className="absolute -right-10 -top-10 w-[180px] md:w-[300px]" opacity={0.25} rotate={18} />
+      <Botanical name="loofah" tint="light" className="absolute -left-10 bottom-0 w-[150px] md:w-[220px]" opacity={0.2} rotate={-12} />
       <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         <div>
           <div className="text-[11px] tracking-[0.32em] uppercase opacity-80">Diagnostic personnalisé</div>
@@ -227,8 +227,8 @@ function DiagnosticBanner() {
 
 function Stats() {
   return (
-    <section className="relative grid md:grid-cols-[1fr_2fr_1fr] items-stretch">
-      <img src={karite.url} alt="Soin corps Amyrel au karité" className="h-full w-full object-cover aspect-[4/5] md:aspect-auto" loading="lazy" />
+    <section className="relative grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] items-stretch">
+      <img src={karite.url} alt="Soin corps Amyrel au karité" className="hidden md:block h-full w-full object-cover md:aspect-auto" loading="lazy" />
       <div className="bg-secondary py-20 px-8 text-center">
         <h2 className="text-[11px] tracking-[0.32em] uppercase text-accent">Pourquoi choisir Amyrel ?</h2>
         <div className="mt-3 text-accent">— ◆ —</div>
@@ -246,7 +246,7 @@ function Stats() {
         </div>
         <div className="text-[10px] text-muted-foreground mt-10">*Étude d'usage réalisée sur 60 volontaires pendant 4 semaines.</div>
       </div>
-      <img src={gelsMoussant.url} alt="Nettoyants visage Amyrel à la marula" className="h-full w-full object-cover aspect-[4/5] md:aspect-auto" loading="lazy" />
+      <img src={gelsMoussant.url} alt="Nettoyants visage Amyrel à la marula" className="hidden md:block h-full w-full object-cover md:aspect-auto" loading="lazy" />
     </section>
   );
 }
@@ -277,8 +277,8 @@ function Story() {
   ];
   return (
     <section id="story" className="relative py-20 overflow-hidden">
-      <Botanical name="coco" className="absolute top-10 right-2 w-[180px]" opacity={0.1} rotate={-6} />
-      <Botanical name="watermelon" className="absolute bottom-6 left-2 w-[160px]" opacity={0.1} rotate={6} />
+      <Botanical name="coco" className="absolute top-10 right-2 w-[120px] md:w-[180px]" opacity={0.1} rotate={-6} />
+      <Botanical name="watermelon" className="absolute bottom-6 left-2 w-[100px] md:w-[160px]" opacity={0.1} rotate={6} />
       <div className="mx-auto max-w-7xl px-6 space-y-20">
         {chapters.map((c, i) => (
           <Reveal key={i}>
@@ -337,8 +337,8 @@ function Testimonials() {
     return () => { emblaApi.off("select", onSel); };
   }, [emblaApi]);
   return (
-    <section className="grid md:grid-cols-[1fr_2fr_1fr] items-stretch bg-secondary/60">
-      <img src={texL} alt="" className="h-full w-full object-cover aspect-video md:aspect-auto" loading="lazy" />
+    <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] items-stretch bg-secondary/60">
+      <img src={texL} alt="" className="hidden md:block h-full w-full object-cover md:aspect-auto" loading="lazy" />
       <div className="py-20 px-8 text-center">
         <h2 className="text-[11px] tracking-[0.32em] uppercase text-accent font-semibold">ELLES NOUS FONT CONFIANCE</h2>
         <div className="mt-3 text-accent">— ◆ —</div>
@@ -363,7 +363,7 @@ function Testimonials() {
           ))}
         </div>
       </div>
-      <img src={texR} alt="" className="h-full w-full object-cover aspect-video md:aspect-auto" loading="lazy" />
+      <img src={texR} alt="" className="hidden md:block h-full w-full object-cover md:aspect-auto" loading="lazy" />
     </section>
   );
 }

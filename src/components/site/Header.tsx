@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Search, User, ShoppingBag, Sparkles, ChevronDown } from "lucide-react";
 import { products, categories, type Category } from "@/data/products";
-import logoAmyrel from "@/assets/logo-amyrel-transparent.png.asset.json";
+import logoAmyrel from "@/assets/logo_amyrel_trans.png";
 
 const brandLinks = [
   { label: "Notre histoire", desc: "Les origines d'Amyrel et notre mission." },
@@ -28,11 +28,8 @@ export function Header() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between gap-8">
-        <Link to="/" className="flex items-center">
-          <img src={logoAmyrel.url} alt="Amyrel Cosmétique" className="h-12 w-auto md:h-14" />
-        </Link>
-        <nav className="hidden lg:flex items-center gap-2 text-[12px] tracking-[0.22em] uppercase text-foreground/80 font-medium">
+      <div className="mx-auto max-w-7xl px-6 h-12 hidden lg:flex items-center justify-between gap-8">
+        <nav className="flex items-center gap-2 text-[12px] tracking-[0.22em] uppercase text-foreground/80 font-medium">
           <CollectionMenu />
           <DropdownMenu label="LA MARQUE" items={brandLinks} />
           <DropdownMenu label="BLOG" items={blogLinks} to="/blog" />
@@ -41,12 +38,21 @@ export function Header() {
         <div className="flex items-center gap-4 text-foreground/80">
           <Link
             to="/diagnostic"
-            className="hidden md:inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2.5 text-[10px] tracking-[0.24em] uppercase hover:bg-accent/90 transition"
+            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2.5 text-[10px] tracking-[0.24em] uppercase hover:bg-accent/90 transition"
           >
             <Sparkles className="h-3.5 w-3.5" /> Diagnostic beauté
           </Link>
           <button aria-label="Recherche" className="hover:text-primary"><Search className="h-5 w-5" /></button>
           <button aria-label="Compte" className="hover:text-primary"><User className="h-5 w-5" /></button>
+          <button aria-label="Panier" className="hover:text-primary"><ShoppingBag className="h-5 w-5" /></button>
+        </div>
+      </div>
+      <div className="border-t border-border/40 lg:border-t py-2 lg:py-3 flex items-center justify-between lg:justify-center px-4 lg:px-0">
+        <Link to="/" className="flex items-center">
+          <img src={logoAmyrel} alt="Amyrel Cosmétique" className="h-10 w-auto lg:h-14" />
+        </Link>
+        <div className="flex items-center gap-3 text-foreground/80 lg:hidden">
+          <button aria-label="Recherche" className="hover:text-primary"><Search className="h-5 w-5" /></button>
           <button aria-label="Panier" className="hover:text-primary"><ShoppingBag className="h-5 w-5" /></button>
         </div>
       </div>

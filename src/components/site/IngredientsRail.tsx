@@ -81,7 +81,7 @@ export function IngredientsRail() {
         </Reveal>
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
-        <ul className="flex gap-5 px-6 md:px-[max(1.5rem,calc((100vw-80rem)/2))] pb-4">
+        <ul className="flex gap-5 px-4 md:px-6 pb-4">
           {items.map((it, i) => (
             <li key={it.name + i} className="shrink-0 w-[260px] md:w-[300px]">
               <Link to="/blog/$slug" params={{ slug: it.slug }} className="group block">

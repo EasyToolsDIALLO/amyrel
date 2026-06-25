@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { SlidersHorizontal, X, ChevronDown, ChevronUp } from "lucide-react";
+import { SlidersHorizontal, X, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -34,14 +34,21 @@ function CollectionPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(true);
   const [priceOpen, setPriceOpen] = useState(true);
+  const [page, setPage] = useState(1);
+
+  const ITEMS_PER_PAGE = 9;
 
   const filtered = useMemo(() => {
+    setPage(1);
     return products.filter((p) => {
       const catMatch = selectedCats.length === 0 || selectedCats.includes(p.category);
       const priceMatch = p.price <= maxPrice;
       return catMatch && priceMatch;
     });
   }, [selectedCats, maxPrice]);
+
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginated = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const toggleCat = (c: Category) => {
     setSelectedCats((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
@@ -166,13 +173,51 @@ function CollectionPage() {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {filtered.map((p, i) => (
-                    <Reveal key={p.slug} delay={i * 60}>
-                      <ProductCard product={p} />
-                    </Reveal>
-                  ))}
-                </div>
+                <>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {paginated.map((p, i) => (
+                      <Reveal key={p.slug} delay={i * 60}>
+                        <ProductCard product={p} />
+                      </Reveal>
+                    ))}
+                  </div>
+
+                  {totalPages > 1 && (
+                    <div className="flex items-center justify-center gap-2 mt-12">
+                      <button
+                        onClick={() => { setPage((v) => Math.max(1, v - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                        disabled={page === 1}
+                        className="h-9 w-9 flex items-center justify-center border border-border hover:border-primary transition disabled:opacity-30 disabled:cursor-not-allowed"
+                        aria-label="Page précédente"
+                      >
+                        <ChevronLeft className="h-4 w-4" />
+                      </button>
+
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                        <button
+                          key={n}
+                          onClick={() => { setPage(n); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                          className={`h-9 w-9 text-xs tracking-[0.15em] border transition ${
+                            n === page
+                              ? "border-primary bg-primary text-primary-foreground"
+                              : "border-border hover:border-primary text-foreground"
+                          }`}
+                        >
+                          {n}
+                        </button>
+                      ))}
+
+                      <button
+                        onClick={() => { setPage((v) => Math.min(totalPages, v + 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                        disabled={page === totalPages}
+                        className="h-9 w-9 flex items-center justify-center border border-border hover:border-primary transition disabled:opacity-30 disabled:cursor-not-allowed"
+                        aria-label="Page suivante"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

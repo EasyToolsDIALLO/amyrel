@@ -113,6 +113,26 @@ function ProductPage() {
               <button className="flex-1 border border-primary text-primary px-7 py-4 text-xs tracking-[0.24em] uppercase hover:bg-primary hover:text-primary-foreground transition">Acheter maintenant</button>
             </div>
 
+            <div className="mt-6 pb-5 border-b border-border">
+              <div className="text-[10px] tracking-[0.24em] uppercase text-foreground/60 mb-3">Ingrédients clés</div>
+              <div className="flex flex-wrap gap-3">
+                {product.keyIngredients.map((k: { name: string; latin: string; image: string; benefits: string[]; articleSlug: string }) => (
+                  <Link
+                    key={k.name}
+                    to="/blog/$slug"
+                    params={{ slug: k.articleSlug }}
+                    className="flex items-center gap-2 group hover:bg-secondary/50 px-2 py-1.5 rounded-sm transition"
+                  >
+                    <img src={k.image} alt={k.name} className="h-8 w-8 rounded-full object-cover shrink-0 ring-1 ring-border group-hover:ring-primary transition" />
+                    <div className="min-w-0">
+                      <div className="text-xs text-foreground group-hover:text-primary transition">{k.name}</div>
+                      <div className="text-[10px] italic text-muted-foreground">{k.latin}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             <div className="mt-6 grid grid-cols-3 gap-2 pt-4 border-t border-border">
               {[{Icon: Truck, t: "Livraison offerte dès 60€"},{Icon: ShieldCheck, t: "Paiement sécurisé"},{Icon: Leaf, t: "Formule clean & vegan"}].map(({Icon,t}) => (
                 <div key={t} className="flex flex-col items-center text-center gap-2">
@@ -180,54 +200,6 @@ function ProductPage() {
                   <div className="font-display text-5xl text-accent">{r.step}</div>
                   <div className="mt-3 text-xs tracking-[0.24em] uppercase text-primary">{r.title}</div>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{r.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Star ingredient */}
-        <section className="py-20">
-          <div className="mx-auto max-w-7xl px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div className="aspect-[4/5] overflow-hidden">
-              <img src={product.ingredient} alt={product.ingredientName} className="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div>
-              <div className="text-[11px] tracking-[0.32em] uppercase text-accent">L'ingrédient star</div>
-              <h2 className="font-display text-4xl text-primary mt-3">{product.ingredientName}</h2>
-              <p className="text-sm text-muted-foreground mt-6 leading-relaxed">{product.description}</p>
-              <ul className="mt-6 space-y-2 text-sm text-foreground">
-                {product.actifs.map((a: string) => <li key={a} className="flex gap-3"><span className="text-accent">◆</span> {a}</li>)}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Key Ingredients */}
-        <section className="bg-secondary/60 py-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-[11px] tracking-[0.32em] uppercase text-accent">Ingrédients clés</h2>
-              <p className="font-display text-3xl text-primary mt-3">Au cœur de la formule</p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {product.keyIngredients.map((k: { name: string; latin: string; image: string; benefits: string[]; articleSlug: string }) => (
-                <div key={k.name} className="bg-background p-6 flex gap-6 group">
-                  <div className="shrink-0 w-28 h-28 rounded-full overflow-hidden">
-                    <img src={k.image} alt={k.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-display text-2xl text-primary">{k.name}</div>
-                    <div className="text-xs italic text-muted-foreground mt-1">{k.latin}</div>
-                    <ul className="mt-3 space-y-1 text-sm text-foreground/90">
-                      {k.benefits.map((b: string) => (
-                        <li key={b} className="flex gap-2"><span className="text-accent">◆</span> {b}</li>
-                      ))}
-                    </ul>
-                    <Link to="/blog/$slug" params={{ slug: k.articleSlug }} className="mt-4 inline-flex items-center gap-2 text-[11px] tracking-[0.24em] uppercase text-accent hover:text-primary transition">
-                      Lire sur le journal <ArrowRight className="h-3 w-3" />
-                    </Link>
-                  </div>
                 </div>
               ))}
             </div>
